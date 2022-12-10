@@ -20,7 +20,9 @@ double[] FunctionsCross(int[] array)
     int coordinatesSize = 2;
     double[] coordinates = new double[coordinatesSize];
     coordinates[0] = (double)(array[3] - array[2]) / (array[0] - array[1]);
+    coordinates[0] = Math.Round(coordinates[0], 2);
     coordinates[1] = (double)(array[0] * coordinates[0] + array[2]);
+    coordinates[1] = Math.Round(coordinates[1], 2);
     return coordinates;
 }
 
