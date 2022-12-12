@@ -44,12 +44,12 @@ string InfoArray(double[] inputArray)
     int j = anglesSize - 1;
     while (j > 0)
     {
-        angles[j] = Math.Round(57.3248 * Math.Asin(height / inputArray[j]), 1);
+        angles[j] = Math.Round((180 / Math.PI) * Math.Asin(height / inputArray[j]), 1);
         j--;
         if (j == 0)
             angles[j] = Math.Round(180 - angles[j + 1] - angles[j + 2], 1);
     }
-    text = "Периметр равен: " + perimeter + "; Площадь равна: " + Math.Round(area,2) + "; ";
+    text = "Периметр равен: " + perimeter + "; Площадь равна: " + Math.Round(area, 2) + "; ";
     {
         for (int k = 0; k < anglesSize; k++)
             text += " Угол " + (k + 1) + ": " + angles[k] + ";";
@@ -60,19 +60,19 @@ string InfoArray(double[] inputArray)
         switch (count)
         {
             case 2:
-                text+=" Равнобедренный";
+                text += " Равнобедренный";
                 break;
             case 3:
-                text+=" Равносторонний";
+                text += " Равносторонний";
                 break;
             default:
-                text+=" Разносторонний";
+                text += " Разносторонний";
                 break;
         }
-    if(angles[0]==90)
-        text+= " прямоугольный треугольник";
-    else
-        text+= " треугольник";
+        if (angles[0] == 90)
+            text += " прямоугольный треугольник";
+        else
+            text += " треугольник";
     }
     return text;
 }
