@@ -69,7 +69,9 @@ string InfoArray(double[] inputArray)
                 text += " Разносторонний";
                 break;
         }
-        if (angles[0] == 90)
+        int indexMaxAngle = 0;
+        int rightAngle = 90;
+        if (angles[indexMaxAngle] == rightAngle)
             text += " прямоугольный треугольник";
         else
             text += " треугольник";
