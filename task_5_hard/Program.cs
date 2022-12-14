@@ -39,7 +39,7 @@ void CheckSeries(int[] array, int[] MaxAndMinArray)
     int count = -1;
     int j = 0;
     int firstNumSeries = 0;
-    int series=0;
+    int series = 0;
     while (i <= MaxAndMinArray[indexMax])
     {
         while (j < array.Length)
@@ -52,13 +52,17 @@ void CheckSeries(int[] array, int[] MaxAndMinArray)
         }
         if (j == array.Length)
         {
-            firstNumSeries=i;
-            series=count;
-            count=0;
+            if (series > count)
+            {
+                firstNumSeries = i;
+                series = count;
+            }
+            count = -1;
             i++;
         }
         i++;
         j = 0;
     }
 
+        Console.WriteLine($"Первое число серии {firstNumSeries}, длина серии {series}");
 }
