@@ -38,37 +38,9 @@ int[] MaxAndMinFromArray(int[] array)
 
 void CheckSeries(int[] array, int[] MaxAndMinArray)
 {
-    int indexMax = 0;
-    int indexMin = 1;
-    int i = MaxAndMinArray[indexMin];
-    int count = -1;
-    int j = 0;
-    int firstNumSeries = i;
-    int series = count;
-    while (i <= MaxAndMinArray[indexMax])
-    {
-        while (j < array.Length)
-        {
-            if (i+1 == array[j])
-            {
-                count++;
-                Console.Write(array[i] + " ");
-            }
-            j++;
-        }
-        if (j == array.Length)
-        {
-            if (count > series)
-            {
-                firstNumSeries = i;
-                series = count;
-                count = -1;
-            }
-            i++;
-        }
-        i++;
-        j = 0;
-    }
+ 
+
+ 
 }
     int arraySize = 7;
     int[] array = FillArray(arraySize);
