@@ -9,7 +9,11 @@ int[] FillArray(int value)
 {
     int[] array = new int[value];
     for (int i = 0; i < value; i++)
-        array[i] = new Random().Next(-value, value);
+    {
+        array[i] = new Random().Next(0, value);
+        Console.Write(array[i] + " ");
+    }
+    Console.WriteLine(string.Empty);
     return array;
 }
 
@@ -17,8 +21,8 @@ int[] MaxAndMinFromArray(int[] array)
 {
     int resArraySize = 2;
     int[] resArray = new int[resArraySize];
-    int indexMin = 0;
-    int indexMax = 1;
+    int indexMax = 0;
+    int indexMin = 1;
     resArray[indexMin] = array[0];
     resArray[indexMax] = array[0];
     foreach (int buf in array)
@@ -28,6 +32,7 @@ int[] MaxAndMinFromArray(int[] array)
         if (buf < resArray[indexMin])
             resArray[indexMin] = buf;
     }
+    Console.WriteLine($"Min {resArray[1]}; Max {resArray[0]}");
     return resArray;
 }
 
@@ -38,8 +43,8 @@ void CheckSeries(int[] array, int[] MaxAndMinArray)
     int i = MaxAndMinArray[indexMin];
     int count = -1;
     int j = 0;
-    int firstNumSeries = 0;
-    int series = 0;
+    int firstNumSeries = i;
+    int series = count;
     while (i <= MaxAndMinArray[indexMax])
     {
         while (j < array.Length)
@@ -49,20 +54,26 @@ void CheckSeries(int[] array, int[] MaxAndMinArray)
                 count++;
                 break;
             }
+            j++;
         }
         if (j == array.Length)
         {
-            if (series > count)
+            if (count > series)
             {
                 firstNumSeries = i;
                 series = count;
+                count = -1;
             }
-            count = -1;
             i++;
         }
         i++;
         j = 0;
     }
 
-        Console.WriteLine($"Первое число серии {firstNumSeries}, длина серии {series}");
+    Console.WriteLine($"Первое число серии {firstNumSeries}, длина серии {series}");
 }
+
+int arraySize = 7;
+int[] array = FillArray(arraySize);
+int[] MaxMin = MaxAndMinFromArray(array);
+CheckSeries(array, MaxMin);
