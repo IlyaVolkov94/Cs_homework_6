@@ -37,25 +37,40 @@ int[] MaxAndMinFromArray(int[] array)
 }
 
 void CheckSeries(int[] array, int[] MaxAndMinArray)
-{   
-    int temp = new Random().Next(0, value); //ответ где-то тут
+{
+    int indexMax = 0;
+    int indexMin = 1;
+    int i = MaxAndMinArray[indexMin];
+    int count = -1;
     int j = 0;
-    for (int i = 0; i < value; i++)
+    int firstNumSeries = i;
+    int series = count;
+    while (i <= MaxAndMinArray[indexMax])
     {
-        while (j < i)   //Проверяем рандомное число на наличие его в массиве
+        while (j < array.Length)
         {
-            if (array[j] == temp)
+            if (i+1 == array[j])
             {
-                temp = new Random().Next(0, value);
-                j = 0;
+                count++;
+                Console.Write(array[i] + " ");
             }
-            else j++;
+            j++;
         }
-        array[i] = temp;
+        if (j == array.Length)
+        {
+            if (count > series)
+            {
+                firstNumSeries = i;
+                series = count;
+                count = -1;
+            }
+            i++;
+        }
+        i++;
+        j = 0;
     }
 }
-
-int arraySize = 7;
-int[] array = FillArray(arraySize);
-int[] MaxMin = MaxAndMinFromArray(array);
-CheckSeries(array, MaxMin);
+    int arraySize = 7;
+    int[] array = FillArray(arraySize);
+    int[] MaxMin = MaxAndMinFromArray(array);
+    CheckSeries(array, MaxMin);
