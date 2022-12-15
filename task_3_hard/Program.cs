@@ -82,7 +82,7 @@ string InfoArray(double[] inputArray)
 bool CheckArray(double[] array)
 {
     bool flag = false;
-
+    double sum = 0;
     for(int i=0; i<array.Length; i++)
     {
         
