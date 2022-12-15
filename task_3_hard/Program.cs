@@ -99,7 +99,7 @@ bool CheckArray(double[] array)
                 break;
         }
 
-        if (array[i] > array[tempFirst] + array[tempSecond])
+        if (array[i] >= array[tempFirst] + array[tempSecond])
             flag = false;
     }
     return flag;
