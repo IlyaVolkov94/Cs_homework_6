@@ -10,7 +10,7 @@ double[] InputArray()
     double[] array = new double[inputSize];
     for (int i = 0; i < inputSize; i++)
     {
-        Console.WriteLine($"Введите {i + 1} сторону");
+        Console.WriteLine($"Введите {i + 1} отрезок");
         array[i] = Convert.ToDouble(Console.ReadLine());
     }
     return array;
@@ -81,16 +81,34 @@ string InfoArray(double[] inputArray)
 
 bool CheckArray(double[] array)
 {
-    bool flag = false;
-    double sum = 0;
-    for(int i=0; i<array.Length; i++)
+    bool flag = true;
+    int arraySize = array.Length;
+    int tempFirst = 1;
+    int tempSecond = arraySize - 1;
+    for (int i = 0; i < arraySize; i++)
     {
-        
-    }
+        switch (i)
+        {
+            case 1:
+                tempFirst = 0;
+                break;
+            case 2:
+                tempSecond = 1;
+                break;
+            default:
+                break;
+        }
 
+        if (array[i] > array[tempFirst] + array[tempSecond])
+            flag = false;
+    }
     return flag;
 }
 
 double[] array = InputArray();
+if(CheckArray(array))
+{
 array = SortArray(array);
 Console.WriteLine(InfoArray(array));
+}
+else Console.WriteLine("Из данных отрезков треугольник не составить");
