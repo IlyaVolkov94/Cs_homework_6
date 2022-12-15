@@ -79,6 +79,18 @@ string InfoArray(double[] inputArray)
     return text;
 }
 
+bool CheckArray(double[] array)
+{
+    bool flag = false;
+
+    for(int i=0; i<array.Length; i++)
+    {
+        
+    }
+
+    return flag;
+}
+
 double[] array = InputArray();
 array = SortArray(array);
 Console.WriteLine(InfoArray(array));
