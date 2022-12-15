@@ -98,7 +98,6 @@ bool CheckArray(double[] array)
             default:
                 break;
         }
-
         if (array[i] >= array[tempFirst] + array[tempSecond])
             flag = false;
     }
@@ -106,9 +105,9 @@ bool CheckArray(double[] array)
 }
 
 double[] array = InputArray();
-if(CheckArray(array))
+if (CheckArray(array))
 {
-array = SortArray(array);
-Console.WriteLine(InfoArray(array));
+    array = SortArray(array);
+    Console.WriteLine(InfoArray(array));
 }
 else Console.WriteLine("Из данных отрезков треугольник не составить");
