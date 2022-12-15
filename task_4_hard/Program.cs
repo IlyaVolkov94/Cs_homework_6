@@ -6,8 +6,21 @@
 int[] FillRandomArray(int value)
 {
     int[] array = new int[value];
+    int temp = new Random().Next(0, value);
+    int j = 0;
     for (int i = 0; i < value; i++)
-        array[i] = new Random().Next(0, value);
+    {
+        while (j < i)   //Проверяем рандомное число на наличие его в массиве
+        {
+            if (array[j] == temp)
+            {
+                temp = new Random().Next(0, value);
+                j = 0;
+            }
+            else j++;
+        }
+        array[i] = temp;
+    }
     return array;
 }
 
@@ -30,16 +43,18 @@ void MaxAndMinFromArray(int[] array, int rows, int cols)
 {
     int indexMax = 0;
     int indexMin = 0;
-    for (int i = 0; i < array.Length; i++)
+    int Max = array[0];
+    int Min = array[0];
+    for (int i = 1; i < array.Length; i++)
     {
-        if (array[i] > array[indexMax])     // В случае если в массиве два максимальных числа,
-        {                                   //принимает индекс не первого, а последнего максимального элемента.
-            array[indexMax] = array[i];     //Почему?
+        if (array[i] > Max)
+        {
+            Max = array[i];
             indexMax = i;
         }
-        if (array[i] < array[indexMin])
+        if (array[i] < Min)
         {
-            array[indexMin] = array[i];
+            Min = array[i];
             indexMin = i;
         }
     }
@@ -47,8 +62,9 @@ void MaxAndMinFromArray(int[] array, int rows, int cols)
     int colMax = indexMax % cols;
     int rowMin = indexMin / cols;
     int colMin = indexMin % cols;
-    Console.WriteLine($"Минимальное значение {array[indexMin]}; в {rowMin + 1} строке и {colMin + 1} столбце");
-    Console.WriteLine($"Максимальное значение {array[indexMax]}; в {rowMax + 1} строке и {colMax + 1} столбце");
+    Console.WriteLine(String.Empty);
+    Console.WriteLine($"Минимальное значение {Min}; в {rowMin + 1} строке и {colMin + 1} столбце");
+    Console.WriteLine($"Максимальное значение {Max}; в {rowMax + 1} строке и {colMax + 1} столбце");
 }
 
 Console.WriteLine("Введите количество строк:");
