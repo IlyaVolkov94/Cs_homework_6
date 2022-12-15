@@ -3,12 +3,12 @@
 Вывести эту информацию на экран.
 */
 
-int[] FillTwoDimensionalArray(int row, int col)
+int[] FillRandomArray(int value)
 {
-    int[] oneDimentionalArray = new int[row * col];
-    for (int i = 0; i < oneDimentionalArray.Length; i++)
-        oneDimentionalArray[i] = new Random().Next(0, row * col);
-    return oneDimentionalArray;
+    int[] array = new int[value];
+    for (int i = 0; i < value; i++)
+        array[i] = new Random().Next(0, value);
+    return array;
 }
 
 void PrintOneDimensionalAsTwoDimensional(int[] array, int rows, int cols)
@@ -28,15 +28,13 @@ void PrintOneDimensionalAsTwoDimensional(int[] array, int rows, int cols)
 
 void MaxAndMinFromArray(int[] array, int rows, int cols)
 {
-    int resArraySize = 2;
-    int[] resArray = new int[resArraySize];
     int indexMax = 0;
     int indexMin = 0;
     for (int i = 0; i < array.Length; i++)
     {
-        if (array[i] > array[indexMax])
-        {
-            array[indexMax] = array[i];
+        if (array[i] > array[indexMax])     // В случае если в массиве два максимальных числа,
+        {                                   //принимает индекс не первого, а последнего максимального элемента.
+            array[indexMax] = array[i];     //Почему?
             indexMax = i;
         }
         if (array[i] < array[indexMin])
@@ -45,31 +43,19 @@ void MaxAndMinFromArray(int[] array, int rows, int cols)
             indexMin = i;
         }
     }
-    int rowMax = 0;
-    int tempIndexMax = indexMax;
-    while (tempIndexMax > 0)
-    {
-        rowMax++;
-        tempIndexMax /= cols;
-    }
-    int colMax = indexMax - rows * rowMax;
-    int rowMin = 0;
-    int tempIndexMin = indexMin;
-    while (tempIndexMin > 0)
-    {
-        rowMin++;
-        tempIndexMin /= cols;
-    }
-    int colMin = indexMin - rows*rowMin;
-
+    int rowMax = indexMax / cols;
+    int colMax = indexMax % cols;
+    int rowMin = indexMin / cols;
+    int colMin = indexMin % cols;
     Console.WriteLine($"Минимальное значение {array[indexMin]}; в {rowMin + 1} строке и {colMin + 1} столбце");
-    Console.WriteLine($"Минимальное значение {array[indexMax]}; в {rowMax + 1} строке и {colMax + 1} столбце");
+    Console.WriteLine($"Максимальное значение {array[indexMax]}; в {rowMax + 1} строке и {colMax + 1} столбце");
 }
 
 Console.WriteLine("Введите количество строк:");
 int row = Convert.ToInt32(Console.ReadLine());
 Console.WriteLine("Введите количество столбцов:");
 int col = Convert.ToInt32(Console.ReadLine());
-int[] array = FillTwoDimensionalArray(row, col);
+int size = row * col;
+int[] array = FillRandomArray(size);
 MaxAndMinFromArray(array, row, col);
 PrintOneDimensionalAsTwoDimensional(array, row, col);
